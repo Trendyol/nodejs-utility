@@ -1,2 +1,2 @@
-export * from '../src/decorators/nrSegment';
-export * from '../src/decorators/safeRoute';
+export * from './decorators/nrSegment';
+export * from './decorators/safeRoute';
