@@ -1,0 +1,20 @@
+{
+  "name": "ty-utility",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "author": "ismail hakki tekin <ihakkitekin@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.0",
+    "@types/newrelic": "^4.11.0",
+    "typescript": "^3.5.1"
+  },
+  "peerDependencies": {
+    "newrelic": "^5.10.0",
+    "reflect-metadata": "^0.1.13"
+  }
+}
