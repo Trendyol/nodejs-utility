@@ -1,3 +1,7 @@
+# Version 1.0.2
+**Features**
+- Add mapper utility to select best element by given group.
+
 # Version 1.0.1
 **Bugfix**
 - Fix wrong file reference in index.ts
