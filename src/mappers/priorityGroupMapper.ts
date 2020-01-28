@@ -1,5 +1,5 @@
-export function priorityGroupMapper<X>(arr: {[key:string]: any}[], sortKey: string, groupKey: string, mapper?: {[key:string]: (key: any) => any}): X[] {
-  const map: {[key: string]: any; } = {};
+export function priorityGroupMapper(arr: {[key:string]: any}[], sortKey: string, groupKey: string, mapper?: {[key:string]: (key: any) => any}): {[key:string]: any}[] {
+  const map: {[key: string]: {[key:string]: any} } = {};
 
   for (const item of arr) {
     const seperator = item[groupKey];
