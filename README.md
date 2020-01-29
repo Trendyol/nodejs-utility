@@ -27,3 +27,11 @@ This package meant to be used for simple and useful, utilty purposed components.
 
     @safeRoute
     function someMiddleWare(req, res, next){ ... }
+
+  ## priorityGroupMapper
+
+  Groups object by given `groupKey` when selects the biggest `sortKey`.
+
+    stamps = this.priorityGroupMapper(stamps, 'priority', 'position', {
+      aspectRatio: (v: number) => v && v > 0 && v <= STAMPS_MAX_ASPECT_RATIO ? v : STAMPS_DEFAULT_ASPECT_RATIO,
+    });
