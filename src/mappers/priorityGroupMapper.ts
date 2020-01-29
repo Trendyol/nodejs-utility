@@ -1,5 +1,10 @@
-export function priorityGroupMapper(arr: {[key:string]: any}[], sortKey: string, groupKey: string, mapper?: {[key:string]: (key: any) => any}): {[key:string]: any}[] {
-  const map: {[key: string]: {[key:string]: any} } = {};
+type StrOrNum = string | number;
+type MapObj<T> = {[key in StrOrNum]: T};
+type ArrObj<T> = {[key in keyof T]: StrOrNum};
+type Mapper<T> = {[key in keyof T]?: (key: StrOrNum) => any};
+
+export function priorityGroupMapper<T extends ArrObj<T>>(arr: T[], sortKey: keyof T, groupKey: keyof T, mapper?: Mapper<T>): T[] {
+  const map = {} as MapObj<T>;
 
   for (const item of arr) {
     const seperator = item[groupKey];
@@ -17,8 +22,10 @@ export function priorityGroupMapper(arr: {[key:string]: any}[], sortKey: string,
   for (const key in map) {
     if (mapper) {
       for (const mapKey in mapper) {
-        const val = map[key][mapKey];
-        map[key][mapKey] = mapper[mapKey](val);
+        const [ val, func ] = [ map[key][mapKey], mapper[mapKey]];
+        if(typeof func === "function"){
+          map[key][mapKey] = func(val);
+        }
       }
     }
 
