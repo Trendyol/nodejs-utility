@@ -2,11 +2,16 @@ type StrOrNum = string | number;
 type MapObj<T> = {[key in StrOrNum]: T};
 type ArrObj<T> = {[key in keyof T]: StrOrNum};
 type Mapper<T> = {[key in keyof T]?: (key: StrOrNum) => any};
+type Filter<T> = (item: T) => boolean;
 
-export function priorityGroupMapper<T extends ArrObj<T>>(arr: T[], sortKey: keyof T, groupKey: keyof T, mapper?: Mapper<T>): T[] {
+export function priorityGroupMapper<T extends ArrObj<T>>(arr: T[], sortKey: keyof T, groupKey: keyof T, mapper?: Mapper<T>, filter?: Filter<T>): T[] {
   const map = {} as MapObj<T>;
 
   for (const item of arr) {
+    if (filter && !filter(item)) {
+      continue;
+    }
+
     const seperator = item[groupKey];
     if (!map.hasOwnProperty(seperator)) {
       map[seperator] = item;
